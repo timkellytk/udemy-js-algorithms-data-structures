@@ -1,8 +1,10 @@
-function insertionSort(arr) {
+/* Original solution - splices rather than shuffles values */
+
+/* function insertionSort(arr) {
     for (let i = 1; i < arr.length; i++) {
+        let value = arr[i];
         // Loop until index = 0
         for (let j = i - 1; j >= 0; j--) {
-            let value = arr[i];
             let compare = arr[j];
 
             if (value >= compare) {
@@ -23,6 +25,32 @@ function insertionSort(arr) {
         }
     }
     return arr
+} */
+
+/* Refactored solution after reviewing answer */
+
+function insertionSort(arr) {
+    for (let i = 1; i < arr.length; i++) {
+        let value = arr[i];
+        // Loop until index = 0
+        for (var j = i - 1; j >= 0 && value < arr[j]; j--) {
+            arr[j+1] = arr[j]
+        }
+        arr[j+1] = value;
+    }
+    return arr
 }
+
+/* function insertionSort(arr){
+	var currentVal;
+    for(var i = 1; i < arr.length; i++){
+        currentVal = arr[i];
+        for(var j = i - 1; j >= 0 && arr[j] > currentVal; j--) {
+            arr[j+1] = arr[j]
+        }
+        arr[j+1] = currentVal;
+    }
+    return arr;
+} */
 
 module.exports = insertionSort;
