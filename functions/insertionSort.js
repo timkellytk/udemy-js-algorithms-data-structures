@@ -1,12 +1,28 @@
-function insertionSort() {
-    // For every item in an array
-    // Skip the first item
-    // For the second item, look at the left hand of the array 0 -> current index
-    // Create compareIndex = index - 1
-    // If arr[index] < arr[compareIndex] then compareIndex - 1 and repeat
-    // If arr[index] > arr[compareIndex] immediately then doing nothing
-    // If arr[index] > arr[compareIndex] then remove arr[index] and insert arr[index] at compareIndex + 1
-    return false
+function insertionSort(arr) {
+    for (let i = 1; i < arr.length; i++) {
+        // Loop until index = 0
+        for (let j = i - 1; j >= 0; j--) {
+            let value = arr[i];
+            let compare = arr[j];
+
+            if (value >= compare) {
+                // Remove item from unsorted array
+                arr.splice(i, 1);
+                // Insert item into sorted array
+                arr.splice(j + 1, 0, value);
+                break;
+            }
+
+            if (j <= 0) {
+                // Remove item from unsorted array
+                arr.splice(i, 1);
+                // Insert item into start of sorted array
+                arr.unshift(value);
+                break;
+            }
+        }
+    }
+    return arr
 }
 
 module.exports = insertionSort;
