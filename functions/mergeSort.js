@@ -24,4 +24,12 @@ const merge = (arr1, arr2) => {
   return mergedArray;
 };
 
-module.exports = merge;
+const mergeSort = (arr) => {
+  if (arr.length <= 1) return arr;
+  let mid = Math.floor(arr.length / 2);
+  let a = mergeSort(arr.slice(0, mid));
+  let b = mergeSort(arr.slice(mid));
+  return merge(a, b);
+};
+
+module.exports = mergeSort;
